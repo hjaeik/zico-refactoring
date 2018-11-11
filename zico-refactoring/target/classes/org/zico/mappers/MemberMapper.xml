@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="member">
+ 	<resultMap type="MemberVo" id="memberVo">
+ 		<result property="memberId" 		column="MEMBER_ID"/>
+ 		<result property="memberName" 		column="MEMBER_NAME"/>
+ 		<result property="memberPassword" 	column="MEMBER_PASSWORD"/>
+ 		<result property="memberPhone" 		column="MEMBER_PHONE"/>
+ 		<result property="memberGrade" 		column="MEMBER_GRADE"/>
+ 		<result property="memberPwdHint"	column="MEMBER_PWDHINT"/>
+ 		<result property="memberPwdAnswer" 	column="MEMBER_PWDANSWER"/>
+ 	</resultMap>
+ 	
+ 	<select id="loginMember">
+ 		SELECT
+ 			MEMBER_PASSWORD
+ 		FROM
+ 			MEMBER
+ 		WHERE
+ 			MEMBER_ID = #{memberId}
+ 	</select>
+ 	
+ 	<select id="selectMember">
+ 		SELECT 
+ 			* 
+ 		FROM 
+ 			MEMBER
+ 	</select>
+ 	
+ 	<delete id="deleteMember">
+ 		DELETE 
+ 		FROM
+ 			MEMBER
+ 		WHERE
+ 			MEMBER_ID = #{memberId}
+ 	</delete>
+ 	
+ 	<update id="updateMember">
+ 		UPDATE
+ 			MEMBER
+ 		SET
+ 			MEMBER_ID = #{memberId}
+ 			MEMBER_NAME = #{memberName}
+ 			MEMBER_PASSWORD = #{memberPassword}
+ 			MEMBER_PHONE = #{memberPhone}
+ 			MEMBER_GRADE = #{memberGrade}
+ 			MEMBER_PWDHINT = #{memberPwdHint}
+ 			MEMBER_PWDANSWER = #{memberPwdAnswer}
+ 		WHERE
+ 			MEMBER_ID = #{memberId}
+ 	</update>
+ 	
+ 	<insert id="insertMember">
+ 		INSERT INTO
+	 		MEMBER
+		 		(MEMBER_ID
+		 		,MEMBER_NAME
+		 		,MEMBER_PASSWORD
+		 		,MEMBER_PHONE
+		 		,MEMBER_GRADE
+		 		,MEMBER_PWDHINT
+		 		,MEMBER_PWDANSWER)
+	 	VALUES
+		 		(#{memberId}
+		 		,#{memberName}
+		 		,#{memberPassword}
+		 		,#{memberPhone}
+		 		,#{memberGrade}
+		 		,#{memberPwdHint}
+		 		,#{memberPwdAnswer})
+ 	</insert>
+ 	
+ </mapper>

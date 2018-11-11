@@ -22,7 +22,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.zico.web" />
-	
-	
+	<context:component-scan base-package="org.zico.**.controller" />
 	
 </beans:beans>
