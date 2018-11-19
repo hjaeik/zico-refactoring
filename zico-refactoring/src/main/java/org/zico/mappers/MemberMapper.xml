@@ -14,13 +14,16 @@
  		<result property="memberPwdAnswer" 	column="MEMBER_PWDANSWER"/>
  	</resultMap>
  	
- 	<select id="loginMember">
+ 	<select id="loginMember" resultMap="memberVo">
  		SELECT
- 			MEMBER_PASSWORD
+ 			MEMBER_ID
+ 			,MEMBER_NAME
+ 			,MEMBER_GRADE
  		FROM
  			MEMBER
  		WHERE
  			MEMBER_ID = #{memberId}
+ 			AND MEMBER_PASSWORD = #{memberPassword}
  	</select>
  	
  	<select id="selectMember">
@@ -47,8 +50,8 @@
  			MEMBER_PASSWORD = #{memberPassword}
  			MEMBER_PHONE = #{memberPhone}
  			MEMBER_GRADE = #{memberGrade}
- 			MEMBER_PWDHINT = #{memberPwdHint}
- 			MEMBER_PWDANSWER = #{memberPwdAnswer}
+ 			MEMBER_PWD_HINT = #{memberPwdHint}
+ 			MEMBER_PWD_ANSWER = #{memberPwdAnswer}
  		WHERE
  			MEMBER_ID = #{memberId}
  	</update>
@@ -61,8 +64,8 @@
 		 		,MEMBER_PASSWORD
 		 		,MEMBER_PHONE
 		 		,MEMBER_GRADE
-		 		,MEMBER_PWDHINT
-		 		,MEMBER_PWDANSWER)
+		 		,MEMBER_PWD_HINT
+		 		,MEMBER_PWD_ANSWER)
 	 	VALUES
 		 		(#{memberId}
 		 		,#{memberName}
@@ -72,5 +75,14 @@
 		 		,#{memberPwdHint}
 		 		,#{memberPwdAnswer})
  	</insert>
+ 	
+ 	<select id="selectMemberId" resultType="int">	
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			MEMBER
+ 		WHERE
+ 			MEMBER_ID = #{memberId}
+ 	</select>
  	
  </mapper>

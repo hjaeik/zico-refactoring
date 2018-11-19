@@ -11,9 +11,9 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="org.zico.web">
+	<!-- <logger name="org.zico.web">
 		<level value="info" />
-	</logger>
+	</logger> -->
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
@@ -34,7 +34,8 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+<!-- 		<priority value="warn" /> -->
+		<priority value="debug" />
 		<appender-ref ref="console" />
 	</root>
 	

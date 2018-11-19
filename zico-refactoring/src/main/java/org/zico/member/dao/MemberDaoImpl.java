@@ -3,18 +3,23 @@ package org.zico.member.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.zico.member.controller.MemberController;
 import org.zico.member.vo.MemberVo;
 
 /**
- * @ClassName   : MemberDao.java
+ * @ClassName   : MemberDaoImpl.java
  * @Description : 회원관리 Dao
  * @Author      : Mantos
 */
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
+	private static final Logger logger = LoggerFactory.getLogger(MemberDaoImpl.class);
+	
 	@Autowired
 	private SqlSession sqlSession;
 
@@ -24,7 +29,7 @@ public class MemberDaoImpl implements MemberDao {
 	 *  @return int
 	*/
 	@Override
-	public int loginMember(MemberVo memberVo) {
+	public MemberVo loginMember(MemberVo memberVo) {		
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("member.loginMember", memberVo);
 	}
@@ -72,6 +77,18 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("member.selectMember");
 	}
+
+	/*
+	 *  회원 아이디 검색
+	 *  @param String(memberId)
+	 *  @return int
+	 */
+	@Override
+	public int selectMemberId(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectMemberId", memberId);
+	}
+	
 }
 	
 

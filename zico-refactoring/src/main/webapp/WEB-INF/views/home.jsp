@@ -25,23 +25,20 @@
 	</head>
 	<body>
 	<!-- 제이쿼리 CDN -->
-	<script
-			src="https://code.jquery.com/jquery-3.2.1.min.js"
-			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-			crossorigin="anonymous"></script>
-
-
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+				crossorigin="anonymous"></script>
 	<!-- Header -->
-	<header id="header" class="alt" style="overflow:unset;">
-		<div class="logo"><a href="/home">B E L L<span>&nbsp;by Zico</span></a></div>
-			<a class="none-inlineblock" id="login" style="display:none">Login</a>
-			<a class="none-inlineblock" href="/member/insert" style="display:none">Signin</a>
-			<a class="user-inlineblock" id="myid" style="display:none"></a>
-			<a class="user-inlineblock" id="aftersignin" style="display:none">Logout</a>
-			<a class="manage-inlineblock" href="/admin/dashboard" style="display:none">manage</a>
-		</div>
-		<a href="#menu" class="toggle"><span>Menu</span></a>
-	</header>
+		<header id="header" class="alt" style="overflow:unset;">
+			<div class="logo"><a href="/">B E L L<span>&nbsp;by Zico</span></a></div>
+				<a class="none-inlineblock" id="login" style="display:none">Login</a>
+				<a class="none-inlineblock" href="/member/insert" style="display:none">Signin</a>
+				<a class="user-inlineblock" id="myid" style="display:none"></a>
+				<a class="user-inlineblock" id="aftersignin" style="display:none">Logout</a>
+				<a class="manage-inlineblock" href="/admin/dashboard" style="display:none">manage</a>
+			</div>
+			<a href="#menu" class="toggle"><span>Menu</span></a>
+		</header>
 
 	<!-- The Modal -->
 	<div id="myModal" class="modal" style="position:absolute; z-index:10">
@@ -60,11 +57,14 @@
 					</div>
 				</div>
 				<br>
-				<form action="/member/login" method="post">
+				<form id="loginForm" action="/login/false" method="post">
 					<div class="login">
-						<input type="text" placeholder="username" name="member_id"><br>
-						<input type="password" placeholder="password" name="member_password"><br>
-						<a href="/member/insert">회원가입 </a>&nbsp;&nbsp; <span class="line"><input name="remember" id="remember" style="opacity:1; float:none; -webkit-appearance: checkbox; display: -webkit-inline-box; " type="checkbox" />&emsp; &emsp;로그인</span><br>
+						<input type="text" placeholder="username" name="memberId"><br>
+						<input type="password" placeholder="password" name="memberPassword"><br>
+						<a href="/member/insert">회원가입 </a>&nbsp;&nbsp;
+						<span class="line">
+							<input name="remember" id="remember" style="opacity:1; float:none; -webkit-appearance: checkbox; display: -webkit-inline-box; " type="checkbox"/>&emsp; &emsp;로그인
+						</span><br>
 						<button style="padding:0px">login</button>
 					</div>
 				</form>
@@ -73,17 +73,18 @@
     	</div>
 	</div>	
 	
-	<form id="logout" action="/member/logout" method="post" style="display:none"></form>
+	<form id="logout" action="/logout" method="post" style="display:none"></form>
 	<script>
 			$(".line").on("click",function(){
 				console.log("클릭 실행");
 				console.log("if문 실행되기 전 : " + $("#remember").prop("checked"));	
 				if($("#remember").prop("checked")){
 					$("#remember").prop("checked", false);
+					$("#loginForm").attr("action","/login/false");
 				} else {
 					$("#remember").prop("checked", true);
+					$("#loginForm").attr("action","/login/true");
 				}
-				console.log("if문 실행된 후 : " + $("#remember").prop("checked"));
 			});
 	</script>
 	<script> 
@@ -161,8 +162,8 @@
 	<!-- Nav -->
 	<nav id="menu">
 		<ul class="links">
-			<li><a href="/home">Home</a></li>
-			<li><a href="/notice/list">Notice</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="/notice">Notice</a></li>
 			<li><a href="/order/store">Order</a></li>
 			<li class="manage-listitem" style="display:none;"><a href="/admin/dashboard">manage</a></li>
 		</ul>

@@ -7,13 +7,13 @@ package org.zico.member.vo;
 */
 
 public class MemberVo {
-	private String memberId;
-	private String memberName;
-	private String memberPassword;
-	private String memberPhone;
-	private String memberGrade;
-	private String memberPwdHint;
-	private String memberPwdAnswer;
+	private String 	memberId;
+	private String 	memberName;
+	private String 	memberPassword;
+	private String 	memberPhone;
+	private String 	memberPwdHint;
+	private String 	memberPwdAnswer;
+	private Integer memberGrade;
 	
 	public String getMemberId() {
 		return memberId;
@@ -39,10 +39,10 @@ public class MemberVo {
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
-	public String getMemberGrade() {
+	public Integer getMemberGrade() {
 		return memberGrade;
 	}
-	public void setMemberGrade(String memberGrade) {
+	public void setMemberGrade(Integer memberGrade) {
 		this.memberGrade = memberGrade;
 	}
 	public String getMemberPwdHint() {
@@ -57,4 +57,11 @@ public class MemberVo {
 	public void setMemberPwdAnswer(String memberPwdAnswer) {
 		this.memberPwdAnswer = memberPwdAnswer;
 	}
+	@Override
+	public String toString() {
+		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
+				+ ", memberPhone=" + memberPhone + ", memberGrade=" + memberGrade + ", memberPwdHint=" + memberPwdHint
+				+ ", memberPwdAnswer=" + memberPwdAnswer + "]";
+	}
+	
 }

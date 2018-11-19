@@ -24,4 +24,19 @@
 	<context:component-scan base-package="org.zico.web" />
 	<context:component-scan base-package="org.zico.**.controller" />
 	
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/login/*"/>
+			<beans:ref bean="Login"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/*"/>
+			<beans:ref bean="Check"/>
+		</interceptor>
+	</interceptors>
+	
+	<beans:bean id="Login" class="org.zico.member.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="Check" class="org.zico.member.interceptor.LoginCheckInterceptor"></beans:bean>
 </beans:beans>

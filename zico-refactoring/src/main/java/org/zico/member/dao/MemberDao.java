@@ -17,7 +17,7 @@ public interface MemberDao {
 	 *  @param MemberVo
 	 *  @return int
 	*/
-	public int loginMember(MemberVo memberVo);
+	public MemberVo loginMember(MemberVo memberVo);
 	
 	/*
 	 *  회원등록
@@ -47,5 +47,11 @@ public interface MemberDao {
 	 */
 	public List<MemberVo> selectListMember();
 	
+	/*
+	 *  회원 아이디 검색
+	 *  @param String(memberId)
+	 *  @return int
+	 */
+	public int selectMemberId(String memberId);
 	
 }
