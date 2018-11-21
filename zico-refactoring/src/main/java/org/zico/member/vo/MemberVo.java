@@ -13,6 +13,7 @@ public class MemberVo {
 	private String 	memberPhone;
 	private String 	memberPwdHint;
 	private String 	memberPwdAnswer;
+	private Integer storeNo;
 	private Integer memberGrade;
 	
 	public String getMemberId() {
@@ -57,11 +58,12 @@ public class MemberVo {
 	public void setMemberPwdAnswer(String memberPwdAnswer) {
 		this.memberPwdAnswer = memberPwdAnswer;
 	}
-	@Override
-	public String toString() {
-		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
-				+ ", memberPhone=" + memberPhone + ", memberGrade=" + memberGrade + ", memberPwdHint=" + memberPwdHint
-				+ ", memberPwdAnswer=" + memberPwdAnswer + "]";
+	public Integer getStoreNo() {
+		return storeNo;
 	}
+	public void setStoreNo(Integer storeNo) {
+		this.storeNo = storeNo;
+	}
+	
 	
 }

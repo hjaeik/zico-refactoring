@@ -12,17 +12,23 @@
  		<result property="memberGrade" 		column="MEMBER_GRADE"/>
  		<result property="memberPwdHint"	column="MEMBER_PWDHINT"/>
  		<result property="memberPwdAnswer" 	column="MEMBER_PWDANSWER"/>
+ 		<result property="storeNo"			column="STORE_NO"/>
  	</resultMap>
  	
  	<select id="loginMember" resultMap="memberVo">
- 		SELECT
- 			MEMBER_ID
- 			,MEMBER_NAME
- 			,MEMBER_GRADE
- 		FROM
- 			MEMBER
- 		WHERE
- 			MEMBER_ID = #{memberId}
+ 		SELECT 
+		    MEMBER_ID
+		    ,MEMBER_NAME
+		    ,MEMBER_GRADE
+		    ,STORE_NO
+		FROM
+		    MEMBER M
+		LEFT OUTER JOIN 
+		    STORE S
+		ON
+		    M.MEMBER_ID = S.STORE_MEMBER_ID
+		WHERE
+		    MEMBER_ID = #{memberId}
  			AND MEMBER_PASSWORD = #{memberPassword}
  	</select>
  	

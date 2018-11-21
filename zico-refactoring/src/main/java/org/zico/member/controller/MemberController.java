@@ -71,6 +71,9 @@ public class MemberController {
 			model.addAttribute("id",memberVo.getMemberId());
 			model.addAttribute("grade",memberVo.getMemberGrade());
 			model.addAttribute("cookie",remember);
+			if(memberVo.getStoreNo() != null) {
+				model.addAttribute("storeNo", memberVo.getStoreNo());
+			}
 			redirectUrl = "/home";
 		}
 		return redirectUrl;

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="store">
+
+		<resultMap type="StoreVo" id="storeVo">
+			<result	property="storeNo"			column="STORE_NO"/>
+			<result	property="storeName"		column="STORE_NAME"/>
+			<result	property="storeAddr"		column="STORE_ADDR"/>
+			<result	property="storeTel"			column="STORE_TEL"/>
+			<result	property="storeCategory"	column="STORE_CATEGORY"/>
+			<result	property="storeOpentime"	column="STORE_OPENTIME"/>
+			<result	property="storeClosetime"	column="STORE_CLOSETIME"/>
+			<result	property="storeImage"		column="STORE_IMAGE"/>
+			<result	property="storeMemberId"	column="STORE_MEMBER_ID"/>
+		</resultMap>
+
+	<insert id="insertStore">
+		INSERT INTO
+			STORE(STORE_NO
+				 ,STORE_NAME
+				 ,STORE_ADDR
+				 ,STORE_TEL
+				 ,STORE_CATEGORY
+				 ,STORE_OPENTIME
+				 ,STORE_CLOSETIME
+				 ,STORE_IMAGE
+				 ,STORE_MEMBER_ID)
+		VALUES(
+	  	 	  SEQ_STORE.NEXTVAL
+			  ,#{storeName}
+			  ,#{storeAddr}
+			  ,#{storeTel}
+			  ,#{storeCategory}
+			  ,#{storeOpentime}
+			  ,#{storeClosetime}
+			  ,#{storeImage}
+			  ,#{storeMemberId}
+		)
+		<selectKey	keyProperty="storeNo" resultType="Integer" order="AFTER">
+			SELECT
+				SEQ_STORE.CURRVAL
+			FROM
+				DUAL
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteStore">
+		DELETE
+		FROM
+			STORE
+		WHERE
+			STORE_NO = #{storeNo}
+	</delete>
+	
+	<update id="updateStore">
+		UPDATE 
+			STORE
+		SET
+			STORE_NAME 			= #{storeName}
+			,STORE_ADDR 		= #{storeAddr}
+			,STORE_TEL 			= #{storeTel}
+			,STORE_CATEGORY 	= #{storeCategory}
+			,STORE_OPENTIME 	= #{storeOpentime}
+			,STORE_CLOSETIME 	= #{storeClosetime}
+			,STORE_IMAGE 		= #{storeImage}
+		WHERE
+			STORE_MEMBER_ID = #{storeMemberId}
+	</update>
+	
+	<select id="selectStore" resultMap="storeVo">
+		SELECT
+			*
+		FROM
+			STORE
+		WHERE
+			STORE_NO = #{storeNo}
+	</select>
+	
+	<select id="selectLiseStore" resultMap="storeVo">
+		SELECT
+			*
+		FROM
+			(SELECT
+				STORE_NO
+				,STORE_NAME
+				,STORE_ADDR
+				,STORE_TEL
+				,STORE_CATEGORY
+				,STORE_OPENTIME
+				,STORE_CLOSETIME
+				,STORE_IMAGE
+				,STORE_MEMBER_ID
+				,ROW_NUMBER() OVER(ORDER BY STORE_NO DESC) AS NUMROW
+			FROM
+				STORE)
+			)	
+		WHERE
+			NUMROW BETWEEN (#{page} - 1) * (#{size}) AND ((#{page}) * (#{size}))
+	</select>
+	
+	<select id="selectTotalCnt" resultType="int">
+		SELECT
+			COUNT(STORE_NO)
+		FROM
+			STORE
+	</select>
+</mapper>
+
+	

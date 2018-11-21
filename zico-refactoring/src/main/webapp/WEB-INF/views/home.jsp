@@ -35,7 +35,7 @@
 				<a class="none-inlineblock" href="/member/insert" style="display:none">Signin</a>
 				<a class="user-inlineblock" id="myid" style="display:none"></a>
 				<a class="user-inlineblock" id="aftersignin" style="display:none">Logout</a>
-				<a class="manage-inlineblock" href="/admin/dashboard" style="display:none">manage</a>
+				<a class="manage-inlineblock" href="/store" style="display:none">manage</a>
 			</div>
 			<a href="#menu" class="toggle"><span>Menu</span></a>
 		</header>
