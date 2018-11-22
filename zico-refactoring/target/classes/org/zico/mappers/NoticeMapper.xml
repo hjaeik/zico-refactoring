@@ -54,7 +54,7 @@
   		NOTICE_NO = #{notice_no}
   </update>
   
-  <select id="selectListNotice" resultMap="noticeVo" parameterType="org.zico.common.dto.Page">
+  <select id="selectListNotice" resultMap="noticeVo">
 	SELECT
 		NOTICE_NO
 		,NOTICE_MEMBER_ID

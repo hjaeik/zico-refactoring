@@ -31,6 +31,12 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+	<bean id="uploadPath" class="java.lang.String">
+      <constructor-arg value="C:\\uploadImage">
+      </constructor-arg>
+	</bean>
+	
 
 	
 	

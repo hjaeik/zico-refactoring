@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="menu">
+  	<resultMap type="MenuVo" id="menuVo">
+  		<result property="menuNo" 			column="MENU_NO"/>
+  		<result property="menuImage" 		column="MENU_IMAGE"/>
+  		<result property="menuCategory" 	column="MENU_CATEGORY"/>
+  		<result property="menuPrice" 		column="MENU_PRICE"/>
+  		<result property="menuName" 		column="MENU_NAME"/>
+  		<result property="menuStoreNo" 		column="MENU_STORE_NO"/>
+  	</resultMap>
+  	
+  	<insert id="insertMenu">
+
+	INSERT INTO
+		MENU (MENU_NO
+			 ,MENU_NAME
+			 ,MENU_IMAGE
+			 ,MENU_PRICE
+			 ,MENU_STORE_NO
+			 ,MENU_CATEGORY
+			 )
+		VALUES(
+			  (SELECT 
+			  		NVL ( MAX ( MENU_NO ), 0 ) + 1 
+  			   FROM 
+  			 		MENU)
+			  ,#{menuName}
+			  ,#{menuImage}
+			  ,#{menuPrice}
+			  ,#{menuStoreNo}
+			  ,#{menuCategory}
+			  )
+  	</insert>
+  	
+	
+	<delete id="deleteMenu">
+	DELETE
+	FROM
+		MENU
+	WHERE
+		MENU_NO = #{menuNo}		
+	</delete>
+	
+	<update id="updateMenu">
+	UPDATE
+		MENU
+	SET
+		MENU_NAME = #{menuName}
+		,MENU_IMAGE = #{menuImage}
+		,MENU_PRICE = #{menuPrice}
+	WHERE
+		MENU_NO = #{menuNo}
+	</update>
+	
+	<select id="selectListMenu" resultMap="menuVo">
+	SELECT
+		*
+	FROM
+		(SELECT
+			MENU_NAME
+			,MENU_IMAGE
+			,MENU_PRICE
+			,MENU_STORE_NO
+			,MENU_CATEGORY
+			,MENU_NO
+			,ROW_NUMBER() OVER(ORDER BY MENU_NO DESC) AS NUMROW
+		FROM
+			MENU
+		)
+	WHERE
+		MENU_STORE_NO = #{menuStoreNo}
+		AND NUMROW BETWEEN (#{page} - 1) * (#{size}) AND ((#{page}) * (#{size}))
+	</select>
+
+	<select id="selectMenu" resultMap="menuVo">
+	SELECT
+		*
+	FROM
+		MENU
+	WHERE
+		MENU_NO = #{menuNo}
+	</select>
+		
+  	<select id="selectTotalCnt" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		MENU
+	WHERE
+		MENU_STORE_NO = #{menuStoreNo}
+	</select>
+	
+  </mapper>

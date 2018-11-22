@@ -48,19 +48,20 @@ public class StoreController {
 	public String getStore(Model model, HttpSession session) {
 		Page page = new Page();
 		model.addAttribute("list",	noticeService.selectListNotice(page));
-		
 		return "/store/dashboard";
 	}
 	
 	@GetMapping("/store/detail")
-	public void getDetail(@ModelAttribute("page") Page page, Model model, HttpSession session) {
+	public void getDetail(Model model, HttpSession session) {
+		Page page = new Page();
 		model.addAttribute("list",	noticeService.selectListNotice(page));
 		int storeNo = (Integer) session.getAttribute("storeNo");
 		model.addAttribute("store", storeService.selectStore(storeNo));
 	}
 	
 	@GetMapping("/store/update")
-	public void getUpdate(@ModelAttribute("page") Page page, Model model, HttpSession session) {
+	public void getUpdate(Model model, HttpSession session) {
+		Page page = new Page();
 		model.addAttribute("list",	noticeService.selectListNotice(page));
 		int storeNo = (Integer) session.getAttribute("storeNo");
 		model.addAttribute("store", storeService.selectStore(storeNo));

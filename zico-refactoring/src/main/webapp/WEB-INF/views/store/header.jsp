@@ -188,7 +188,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="/home">Z I C O Bell</a>
+                    <a class="navbar-brand" href="/">Z I C O Bell</a>
                 </div>
                 
                 <div class="collapse navbar-collapse">
@@ -219,7 +219,7 @@
 									<p>메뉴</p>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="/menu/menulist">메뉴리스트</a></li>
+                                <li><a href="/store/menu">메뉴리스트</a></li>
                               </ul>
                         </li>
                         <li class="dropdown storeinfo" style="display:none">

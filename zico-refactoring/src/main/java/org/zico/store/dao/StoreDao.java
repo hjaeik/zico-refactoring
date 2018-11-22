@@ -29,7 +29,7 @@ public interface StoreDao {
 	/*
 	 *  매장 수정
 	 *  @param StoreVo
-	 *  @return int
+	 *  @return StoreVo
 	 */
 	public int updateStore(StoreVo storeVo);
 
